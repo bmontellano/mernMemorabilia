@@ -12,10 +12,10 @@ export const getPosts = async (req, res) => {
     }
 }
 
-export const createPosts = async (req, res) => {
-    const post = req.body;
+export const createPost = async (req, res) => {
+    const { title, message, selectedFile, creator, tags } = req.body;
 
-    const newPost = new PostMessage(post);
+    const newPost = new PostMessage({ title, message, selectedFile, creator, tags });
     try {
         await newPost.save();
         res.status(201).json(newPost);
@@ -23,5 +23,15 @@ export const createPosts = async (req, res) => {
     catch (err) {
         res.status(409).json({message: err.message})
 
+    }
+}
+
+export const deleteAllPosts = async (req, res) => {
+    try{
+        await PostMessage.deleteMany({});
+        res.status(201).json('Deleted ALL MEMORIES')
+    } 
+    catch (err) {
+        res.status(404).json({message: err.message})
     }
 }
