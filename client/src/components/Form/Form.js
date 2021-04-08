@@ -47,8 +47,12 @@ const Form = ({ currentId, setCurrentId }) => {
         clear();
       }
     } else {
-      dispatch(updatePost(currentId, postData));
-      clear();
+      if (postData.creator  === '' || postData.title  === '' || postData.message  === '' ) {
+        alert('Creator, Title and Message fields are required');
+      } else {
+        dispatch(updatePost(currentId, postData));
+        clear();
+      }
     }
     handleClose();
   };
@@ -63,7 +67,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
   return (
       <>
-        <Button className={classes.modalButton} variant='outlined' color="secondary" size="large" onClick={handleOpen}>
+        <Button id='modal-button' className={classes.modalButton} variant='outlined' color="secondary" size="large" onClick={handleOpen}>
           Create Nostalgia
         </Button>
         <Modal
