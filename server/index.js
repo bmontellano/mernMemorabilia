@@ -18,11 +18,14 @@ app.get('/', (req,res) => {
     res.send('Hello to Melancholia API')
 })
 //mongoDB cloud atlas for APP on Heroku
-const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PW}@cluster0.9tsln.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-//mongoDB CONNECTION_URL for localhost
 /*
-`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PW}@cluster0.gztyf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`    
+const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PW}@cluster0.9tsln.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 */
+//mongoDB CONNECTION_URL for localhost
+//When changing to localhost, make sure to update api/index.js in CLIENT folder
+
+const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PW}@cluster0.gztyf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;    
+
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
